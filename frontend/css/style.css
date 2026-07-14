@@ -1,0 +1,33 @@
+body {
+background-color: #a9c7d5;
+margin: 10px;
+padding: 10px;
+font-family: Arial, sans-serif;
+color: rgb(27, 27, 68);
+}
+
+ul {
+  list-style-type: "★";
+  color: #a2eda3;
+}
+
+.featuredimages {
+    width: 100%;
+}
+
+.feat-img-4 {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.img4 {
+    text-align: center;
+    flex: 1;
+}
+
+.img4 img {
+    width: 100%;
+    height: auto;
+}
