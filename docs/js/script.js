@@ -1,7 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-    let searchBox = document.getElementById("search");
 
+    let searchBox = document.getElementById("search");
     if (searchBox) {
         searchBox.addEventListener("keyup", function () {
             let filter = searchBox.value.toLowerCase();
@@ -9,16 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             items.forEach(item => {
                 let text = item.innerText.toLowerCase();
-                if (text.includes(filter)) {
-                    item.style.display = "";
-                } else {
-                    item.style.display = "none";
-                }
+                item.style.display = text.includes(filter) ? "" : "none";
             });
         });
     }
 
-   
     let imageInput = document.getElementById("artwork");
     let previewBox = document.getElementById("preview");
 
@@ -28,91 +22,74 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (file) {
                 let reader = new FileReader();
-
                 reader.onload = function (e) {
                     previewBox.innerHTML = "<img src='" + e.target.result + "'>";
                 };
-
                 reader.readAsDataURL(file);
             }
         });
     }
 
+    let events = document.querySelectorAll(".event");
+    let details = document.getElementById("eventDetails");
 
-    let calendarDays = document.querySelectorAll(".event-day");
-    let calendarInfo = document.getElementById("calendarEventInfo");
-
-    if (calendarDays && calendarInfo) {
-        calendarDays.forEach(day => {
-            day.addEventListener("click", function () {
-                calendarInfo.innerHTML =
-                    "<p><strong>Event:</strong> " + this.dataset.event + "</p>";
+    if (events && details) {
+        events.forEach(event => {
+            event.addEventListener("click", function () {
+                details.innerHTML = "<p><strong>Event:</strong> " + this.innerText + "</p>";
             });
         });
     }
 });
 
+function toggleFAQ(element) {
+    let answer = element.querySelector(".ANSWER");
+    if (!answer) return;
 
-function showEvent(num) {
-    let details = document.getElementById("eventDetails");
-
-    if (!details) return;
-
-    let info = {
-        1: "Outdoor Art Festival – A full-day event featuring local artists.",
-        2: "Showcase of Stars – An evening showcase of local creators.",
-        3: "Creator Workshop – Beginner-friendly art workshop.",
-        4: "Mixed Media Meetup – Collaborative mixed media event."
-    };
-
-    details.innerHTML = "<p><strong>Event:</strong> " + info[num] + "</p>";
+    answer.style.display = answer.style.display === "block" ? "none" : "block";
 }
-
 
 function validateForm() {
-    let name = document.getElementById("artistname").value;
-    let email = document.getElementById("email").value;
-    let phone = document.getElementById("phonenumber").value;
-    let title = document.getElementById("title").value;
-    let medium = document.getElementById("artworkmedium").value;
-    let genre = document.getElementById("artworkgenre").value;
-    let price = document.getElementById("price").value;
-    let description = document.getElementById("description").value;
-    let aboutArtist = document.getElementById("abtartist").value;
-    let image = document.getElementById("artwork").files[0];
+
+    const artworkData = {
+        name: document.getElementById("artistname").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phonenumber").value,
+        title: document.getElementById("title").value,
+        medium: document.getElementById("artworkmedium").value,
+        genre: document.getElementById("artworkgenre").value,
+        price: document.getElementById("price").value,
+        description: document.getElementById("description").value,
+        aboutArtist: document.getElementById("abtartist").value
+    };
+
+    for (let key in artworkData) {
+        if (!artworkData[key]) {
+            alert("Please fill out all fields.");
+            return;
+        }
+    }
+
+    if (!artworkData.email.includes("@") || !artworkData.email.includes(".")) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    if (isNaN(artworkData.price)) {
+        alert("Price must be a number.");
+        return;
+    }
+
+    fetch("http://localhost:3000/submit-art", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(artworkData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        console.log("Backend received:", data.received);
+    });
 }
 
-    let message = document.getElementById("formMessage");
-    if (!message) {
-        message = document.createElement("p");
-        message.id = "formMessage";
-        let form = document.getElementById("submitartform");
-        if (form) form.appendChild(message);
-    }
-
-
-    if (!name || !email || !phone || !title || !medium || !genre ||
-        !price || !description || !aboutArtist) {
-        message.innerText = "Please fill out all fields.";
-        return;
-    }
-
-    
-    if (!email.includes("@") || !email.includes(".")) {
-        message.innerText = "Please enter a valid email address.";
-        return;
-    }
-
-    
-    if (isNaN(price)) {
-        message.innerText = "Price must be a number.";
-        return;
-    }
-
-    
-    if (!image) {
-        message.innerText = "Please upload an image.";
-        return;
-    }
-
-    message.innerText = "Artwork submitted successfully!"
+/* this should work, come back to this if malfunction given new info in faq, homepage, etc */

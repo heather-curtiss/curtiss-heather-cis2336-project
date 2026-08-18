@@ -187,3 +187,43 @@ button:hover {
     border: 3px solid #b8f4c1;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
+
+.featured-event {
+    background: #d9f8e6;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #c7f9cc;
+    width: 80%;
+    margin: 30px auto;
+}
+
+.featured-event-box {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.featured-gif {
+    width: 250px;
+    border-radius: 10px;
+    border: 3px solid #b8f4c1;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.featured-event-info {
+    flex: 1;
+}
+
+.event-link {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #1f6f8b;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.event-link:hover {
+    background-color: #155266;
+}
