@@ -92,4 +92,13 @@ function validateForm() {
     });
 }
 
+function toggleFAQ(element) {
+    let answer = element.querySelector(".ANSWER");
+    if (!answer) return;
+
+    answer.style.display = answer.style.display === "block" ? "none" : "block";
+    element.classList.toggle("open");
+}
+
+
 /* this should work, come back to this if malfunction given new info in faq, homepage, etc */

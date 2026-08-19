@@ -78,7 +78,7 @@ nav ul li a:hover {
 }
 
 
-.faq-item {
+.FAQ {
     background: #c7f9cc;
     padding: 15px;
     margin-bottom: 10px;
@@ -87,11 +87,11 @@ nav ul li a:hover {
     border-left: 5px solid #1f6f8b;
 }
 
-.faq-item:hover {
+.FAQ:hover {
     background: #b8f4c1;
 }
 
-.faq-answer {
+.ANSWER {
     display: none;
     padding: 10px;
     background: #e6f7f7;
@@ -226,4 +226,12 @@ button:hover {
 
 .event-link:hover {
     background-color: #155266;
+}
+
+.FAQ h3::after {
+    content: "▼";
+    float: right;
+}
+.FAQ.open h3::after {
+    content: "▲";
 }
