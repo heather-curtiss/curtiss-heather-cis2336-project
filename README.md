@@ -2,25 +2,14 @@ Concept: ArtConnect is an outline
 platform designed to enable both 
 beginner and professional artists to 
 showcase their artwork, promote 
-art-related events (such as outdoor 
+art-related events (such as 
 art festivals), and to connect with 
 other artists and art enthusiasts. 
 
-For example, ArtConnect would 
-establish discussion boards, forums 
-surrounding specific, art-related 
-topics, and social groups to 
-establish connections between 
-artists of all types, along with art 
-fans, and those who are curious 
-about art. 
+ArtConnect would provide information about upcoming events, and would allow artists to submit their work and present it in a gallery, along with their name and contact information, so that fellow artists and art enthisiasts would be allowed to contact them. 
 
-ArtConnectwould prioritize 
-socialization, connection and, most 
-of all, community amongst its 
-members.
-
-// However, I decided to get rid of the chat and discussion features for now -- perhaps I will remedy that later, when we have progressed further down the line, and started on our backend coding. //
+Instructions for Backend Use:
+After making sure that you are in the backend server, run "node server.js". After it becomes available at https://localhost:3000, go to the website by opening the integrated browser, and navigate to the "Submit Art" page. Type in your information, upload a file, and click the "Submit" button located at the bottom of the page. After you have submitted your artwork, type "http://localhost:3000/all-art" in your actual browser to view the details of your submissions and to make sure they are correct.
 
 Design Concepts
 • Blue and green backgrounds, white accents, gray text
